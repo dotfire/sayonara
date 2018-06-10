@@ -1,0 +1,44 @@
+<div class='clearfix info'>
+  <a href={{item.userUrl}} data-user-card={{item.username}} class='avatar-link'>
+    <div class='avatar-wrapper'>
+      {{avatar item imageSize="large" extraClasses="actor" ignoreTitle="true"}}
+    </div>
+  </a>
+  {{expand-post item=item}}
+  <div class='stream-topic-details'>
+    <div class='stream-topic-title'>
+      {{topic-status topic=item disableActions=true}}
+      <span class="title">
+        <h1>
+          <a style="color: #222; font-family: Helvetica,Arial,sans-serif;" href={{item.postUrl}}>{{{item.title}}}</a>
+        </h1>
+      </span>
+    </div>
+    <div class="category" style="display: inline-flex;">
+      <span class="time" style="float: left;">{{format-date item.created_at}} ago in</span> {{category-link item.category}}
+    </div>
+  </div>
+
+  {{#if item.deleted_by}}
+    <span class="delete-info">
+      {{d-icon "trash-o"}}
+      {{avatar item.deleted_by imageSize="tiny" extraClasses="actor" ignoreTitle="true"}}
+      {{format-date item.deleted_at leaveAgo="true"}}
+    </span>
+  {{/if}}
+
+  {{plugin-outlet name="user-stream-item-header" args=(hash item=item)}}
+</div>
+
+{{#if actionDescription}}
+  <p class='excerpt'>{{actionDescription}}</p>
+{{/if}}
+
+<p class='excerpt' data-topic-id="{{item.topic_id}}" data-post-id="{{item.post_id}}" data-user-id="{{item.user_id}}">
+  {{#if item.expandedExcerpt}}
+    {{{item.expandedExcerpt}}}
+  {{else}}
+    {{{item.excerpt}}}
+  {{/if}}
+</p>
+
