@@ -1,9 +1,4 @@
 <div class='clearfix info'>
-  <a href={{item.userUrl}} data-user-card={{item.username}} class='avatar-link'>
-    <div class='avatar-wrapper'>
-      {{avatar item imageSize="large" extraClasses="actor" ignoreTitle="true"}}
-    </div>
-  </a>
   {{expand-post item=item}}
   <div class='stream-topic-details'>
     <div class='stream-topic-title'>
@@ -15,7 +10,9 @@
       </span>
     </div>
     <div class="category" style="display: inline-flex;">
-      <span class="time" style="float: left;">{{format-date item.created_at}} ago in</span> {{category-link item.category}}
+      <span class="time" style="float: left; font-size: 0.8706em;">
+        by <strong><a href="{{item.userUrl}}">{{item.username}}</a></strong> {{format-date item.created_at}} ago in
+      </span> {{category-link item.category}}
     </div>
   </div>
 
