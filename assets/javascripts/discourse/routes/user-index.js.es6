@@ -6,9 +6,9 @@ export default Discourse.Route.extend({
     // transition into a user's activity works. This makes the back button work on mobile
     // where there is no user card as well as desktop where there is.
     if (this.site.mobileView) {
-      this.replaceWith('userActivity');
+      this.replaceWith('userActivity.bookmarks');
     } else {
-      this.transitionTo('userActivity');
+      this.transitionTo('userActivity.bookmarks');
     }
   }
 
