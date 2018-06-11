@@ -17,10 +17,10 @@ export default {
 
     if (currentUser) {
       const username = currentUser.get('username');
-      DiscourseURL.rewrite(new RegExp(`^/u/${username}/?$`, "i"), `/u/${username}/activity`);
+      DiscourseURL.rewrite(new RegExp(`^/u/${username}/?$`, "i"), `/u/${username}/activity/bookmarks`);
     }
 
-    DiscourseURL.rewrite(/^\/u\/([^\/]+)\/?$/, "/u/$1/activity", {
+    DiscourseURL.rewrite(/^\/u\/([^\/]+)\/?$/, "/u/$1/activity/bookmarks", {
       exceptions: ['/u/account-created', '/users/account-created', '/u/password-reset', '/users/password-reset']
     });
   }
