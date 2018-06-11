@@ -1,12 +1,19 @@
 import DiscourseURL from 'discourse/lib/url';
 
 export default {
-  name: 'sayonara-redirects',
-  after: 'url-redirects',
+  name: 'url-redirects',
+  after: 'inject-objects',
 
   initialize(container) {
 
     const currentUser = container.lookup('current-user:main');
+
+    // URL rewrites (usually due to refactoring)
+    DiscourseURL.rewrite(/^\/category\//, "/c/");
+    DiscourseURL.rewrite(/^\/group\//, "/groups/");
+    DiscourseURL.rewrite(/\/private-messages\/$/, "/messages/");
+    DiscourseURL.rewrite(/^\/users$/, "/u");
+    DiscourseURL.rewrite(/^\/users\//, "/u/");
 
     if (currentUser) {
       const username = currentUser.get('username');
